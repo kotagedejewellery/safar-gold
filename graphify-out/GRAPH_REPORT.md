@@ -1,43 +1,47 @@
-# Graph Report - safar-gold  (2026-09-22)
+# Graph Report - safar-gold  (2026-10-29)
 
 ## Corpus Check
-- 177 files · ~90,976 words
+- 178 files · ~91,280 words
 - Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 8 file(s) not represented in the graph (top: (none) 5, .example 1, .ico 1)
 
 ## Summary
-- 1051 nodes · 2281 edges · 79 communities (64 shown, 15 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.85)
+- 1072 nodes · 2584 edges · 69 communities (58 shown, 11 thin omitted)
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 9 edges (avg confidence: 0.89)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8d497766`
+- Built from commit: `dccfde76`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- order-cart-presentation.ts
-- PricePreviewModal.tsx
+- createAdminClient
+- AdminHargaClient.tsx
 - (public)/page.tsx
 - devDependencies
-- pelanggan/page.tsx
-- InvoiceDownloadButton.tsx
+- eod/route.ts
+- requireCapability
 - OrdersClient.tsx
-- analytics.ts
-- formatRupiah
-- smoke-v17.mts
-- app/layout.tsx
+- analytics/cs-performance/route.ts
+- (public)/harga/page.tsx
+- vitest
+- adjust/route.ts
 - PriceApprovalPanel
 - tentang/page.tsx
 - OrdersClient
-- DESIGN.md — Safar Gold "Atelier"
+- internalServerError
 - App Icon
-- server-user.ts
+- getUserRole
 - eslint.config.mjs
-- next.config.ts
+- next
 - postcss.config.mjs
+- import_historis.py
+- @supabase/ssr
 - About Us Hero Image
 - Safar Gold Store Interior Hero
 - UsersClient
+- cs-performance.ts
 - Spec: Order Lifecycle Hardening
 - regions/route.ts
 - Stock Modal Design
@@ -45,69 +49,62 @@
 - Pekerjaan Selesai
 - Q: Analisa CodeGraph dan Graphify untuk project ini dan propose kesimpulannya
 - Q: Apakah lifecycle order create edit cancel konsisten?
+- eod/page.tsx
 - dependencies
-- AdminHargaClient.tsx
-- cs-performance-privacy.test.ts
-- internalServerError
+- JenisEmasClient.tsx
+- analytics.ts
+- admin/cs-performance/route.ts
+- StockClient
+- hasCapability
 - migration.sql
 - admin-input.ts
-- gold-api.ts
+- analytics/route.ts
 - Q: Scraping tool apa untuk fallback XAU XAG dan XPD?
 - Spec: Dashboard Performa CS
 - Migrasi v17 — Proteksi Data Operasional dan Pelanggan
 - Analytics Chart Visual System
 - Q: Task todo.md mana yang penting dikerjakan lebih dahulu tanpa overengineering?
 - Stock Correction
-- react
 - scripts
 - Q: Dashboard statistik stock dan sumber pelanggan sebaiknya ditempatkan di mana dan berisi apa
 - package.json
 - admin/page.tsx
-- fetchInternationalGoldPrice
+- gold-api.ts
 - Gold Type Modal Design
-- createClient
-- OperationalAnalytics.tsx
+- normalizeAppRole
+- react
 - stock-adjustment.ts
-- hasCapability
-- order-lifecycle.ts
-- admin-route-auth.test.ts
-- migration-security.test.ts
-- proxy-convention.test.ts
-- PelangganClient.tsx
 - Q: Apakah dashboard CS dan admin sudah saling sinkron untuk seluruh fitur?
 - PriceChart.tsx
 - Q: Apalagi untuk selanjutnya?
-- local-startup-performance.test.ts
 - SignaturePad
-- PelangganClient
-- LaporanClient.tsx
-- createAnonClient
-- publish-prices/route.ts
-- next
+- PelangganClient.tsx
+- laporan/page.tsx
+- pengaturan/page.tsx
 
 ## God Nodes (most connected - your core abstractions)
 1. `internalServerError()` - 74 edges
 2. `createAdminClient()` - 66 edges
-3. `validationError()` - 48 edges
-4. `requireCapability()` - 43 edges
-5. `hasCapability()` - 38 edges
-6. `requireRole()` - 32 edges
-7. `formatRupiah()` - 28 edges
-8. `getUserRole()` - 25 edges
-9. `OrdersClient()` - 24 edges
-10. `normalizeAppRole()` - 21 edges
+3. `next` - 65 edges
+4. `validationError()` - 48 edges
+5. `requireCapability()` - 43 edges
+6. `hasCapability()` - 38 edges
+7. `react` - 36 edges
+8. `requireRole()` - 33 edges
+9. `vitest` - 31 edges
+10. `formatRupiah()` - 28 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `Layout / shell` --references--> `main()`  [INFERRED]
+  DESIGN.md → scripts/smoke-v17.mts
+- `State patterns` --references--> `AdminSkeleton()`  [INFERRED]
+  DESIGN.md → src/components/admin/AdminSkeleton.tsx
+- `Hardening Autentikasi dan Otorisasi API` --references--> `requireUser()`  [INFERRED]
+  tasks/todo.md → src/lib/supabase/server-user.ts
+- `Hardening Autentikasi dan Otorisasi API` --references--> `requireRole()`  [INFERRED]
+  tasks/todo.md → src/lib/supabase/server-user.ts
 - `Favicon Logo` --semantically_similar_to--> `App Icon`  [INFERRED] [semantically similar]
   public/favicon.png → src/app/icon.png
-- `Safar Gold Logo` --semantically_similar_to--> `App Icon`  [INFERRED] [semantically similar]
-  public/logo-1.webp → src/app/icon.png
-- `MemberDetail()` --calls--> `formatRupiah()`  [EXTRACTED]
-  src/app/(admin)/admin/analitik/CsTeamAnalytics.tsx → src/lib/gold-api.ts
-- `loadSettings()` --calls--> `createAnonClient()`  [EXTRACTED]
-  src/app/(admin)/admin/page.tsx → src/lib/supabase/anon.ts
-- `Change()` --calls--> `calculateChangePercent()`  [EXTRACTED]
-  src/app/(admin)/admin/analitik/AnalyticsClient.tsx → src/lib/analytics.ts
 
 ## Import Cycles
 - None detected.
@@ -116,51 +113,55 @@
 - **Brand Identity Assets** — public_favicon_png, public_logo_1_webp, src_app_icon_png [EXTRACTED 0.90]
 - **UI Vector Icons** — public_file_svg, public_globe_svg, public_window_svg [INFERRED 0.70]
 
-## Communities (79 total, 15 thin omitted)
+## Communities (69 total, 11 thin omitted)
 
-### Community 0 - "order-cart-presentation.ts"
-Cohesion: 0.32
-Nodes (6): currencyFormatter, formatOrderAddress(), getOrderItemDetails(), numberFormatter, OrderAddressInput, OrderItemDetailInput
+### Community 0 - "createAdminClient"
+Cohesion: 0.15
+Nodes (18): dynamic, GET(), addDay(), dynamic, GET(), dynamic, GET(), dynamic (+10 more)
 
-### Community 1 - "PricePreviewModal.tsx"
+### Community 1 - "AdminHargaClient.tsx"
 Cohesion: 0.17
-Nodes (12): PreviewPriceItem, Props, CATEGORY_LABELS, formatRupiah(), PreviewItem, PricePreviewModal(), PricePreviewModalProps, CATEGORIES (+4 more)
+Nodes (12): AdminHargaClient(), fetchRole(), formatPrice(), getPrice(), getPriceLabel(), isBuyable(), formatRupiahClient(), MODE_TABS (+4 more)
 
 ### Community 2 - "(public)/page.tsx"
-Cohesion: 0.07
-Nodes (33): PublicLayout(), dynamic, HomePage(), metadata, BackToTop(), CaraTransaksi(), FAQ(), faqs (+25 more)
+Cohesion: 0.08
+Nodes (37): ref_fs, ref_path, ref_server_only, PublicLayout(), dynamic, HomePage(), metadata, BackToTop() (+29 more)
 
 ### Community 3 - "devDependencies"
-Cohesion: 0.11
-Nodes (19): eslint, eslint-config-next, devDependencies, eslint, eslint-config-next, tailwindcss, @tailwindcss/postcss, @types/node (+11 more)
+Cohesion: 0.20
+Nodes (10): devDependencies, eslint, eslint-config-next, tailwindcss, @tailwindcss/postcss, @types/node, @types/react, @types/react-dom (+2 more)
 
-### Community 4 - "pelanggan/page.tsx"
-Cohesion: 0.50
-Nodes (4): dynamic, metadata, PelangganPage(), getPublicSettings()
+### Community 4 - "eod/route.ts"
+Cohesion: 0.13
+Nodes (16): dynamic, GET(), OrderItemQuantity, dynamic, EodOrder, EodOrderItem, GET(), GoldTypeCat (+8 more)
 
-### Community 5 - "InvoiceDownloadButton.tsx"
-Cohesion: 0.50
-Nodes (4): InvoiceDownloadButton(), downloadPdf(), Props, safeFilename()
+### Community 5 - "requireCapability"
+Cohesion: 0.20
+Nodes (11): dynamic, GET(), dynamic, GET(), dynamic, GET(), logInternalError(), parseStockRange() (+3 more)
 
 ### Community 6 - "OrdersClient.tsx"
-Cohesion: 0.18
-Nodes (10): BUYBACK_CATEGORIES, CartItem, CustomerLookup, LM_PRODUCTS, Order, OrderDetail, TODO: add brand selector UI for buyback if needed, RegionOption (+2 more)
+Cohesion: 0.13
+Nodes (16): BUYBACK_CATEGORIES, CartItem, CustomerLookup, LM_PRODUCTS, Order, OrderDetail, TODO: add brand selector UI for buyback if needed, RegionOption (+8 more)
 
-### Community 7 - "analytics.ts"
+### Community 7 - "analytics/cs-performance/route.ts"
+Cohesion: 0.22
+Nodes (8): addDays(), dynamic, GET(), isValidDate(), wibToday(), aggregateCsTeamPerformance(), adminAuth, mocks
+
+### Community 8 - "(public)/harga/page.tsx"
+Cohesion: 0.12
+Nodes (21): dynamic, HargaPage(), metadata, dynamic, KalkulatorPage(), metadata, Calculator(), switchTransaction() (+13 more)
+
+### Community 9 - "vitest"
 Cohesion: 0.05
-Nodes (62): Change(), addDays(), dynamic, GET(), isValidDate(), wibToday(), dynamic, GET() (+54 more)
+Nodes (49): Buttons, Component vocabulary, DESIGN.md — Safar Gold "Atelier", Design tokens, Fonts, Layout / shell, Radius scale, Shadows (+41 more)
 
-### Community 8 - "formatRupiah"
-Cohesion: 0.11
-Nodes (22): AdminHargaPage(), dynamic, dynamic, JenisEmasPage(), dynamic, metadata, OrdersPage(), AdminDashboard() (+14 more)
-
-### Community 9 - "smoke-v17.mts"
-Cohesion: 0.26
-Nodes (14): appRequest(), CheckResult, createSessionCookie(), evaluateBlockedTable(), evaluatePublicSettings(), evaluateRoleOrders(), JsonRecord, main() (+6 more)
+### Community 10 - "adjust/route.ts"
+Cohesion: 0.17
+Nodes (11): dynamic, POST(), dynamic, POST(), dynamic, POST(), conflictError(), adminAuth (+3 more)
 
 ### Community 11 - "PriceApprovalPanel"
-Cohesion: 0.13
-Nodes (12): Breakdown, EOD, EODClient(), handleGenerate(), load(), formatDate(), StockSnapshot, PriceApprovalPanel() (+4 more)
+Cohesion: 0.12
+Nodes (13): PreviewPriceItem, PriceApprovalPanel(), cleanNumber(), handleSaveAntamPrice(), handleSaveGlobalGoldPrice(), handleScrapeAntam(), Props, CATEGORY_LABELS (+5 more)
 
 ### Community 12 - "tentang/page.tsx"
 Cohesion: 0.40
@@ -170,21 +171,37 @@ Nodes (3): metadata, timeline, values
 Cohesion: 0.14
 Nodes (7): OrdersClient(), applyLookup(), fetchOrders(), handleSubmit(), openEdit(), resetForm(), titleCase()
 
-### Community 14 - "DESIGN.md — Safar Gold "Atelier""
-Cohesion: 0.18
-Nodes (10): Buttons, Component vocabulary, DESIGN.md — Safar Gold "Atelier", Design tokens, Fonts, Layout / shell, Radius scale, Shadows (+2 more)
+### Community 14 - "internalServerError"
+Cohesion: 0.33
+Nodes (10): authErrorCode(), authProviderError(), DELETE(), dynamic, GET(), POST(), PUT(), internalServerError() (+2 more)
 
 ### Community 15 - "App Icon"
 Cohesion: 0.67
 Nodes (3): Favicon Logo, Safar Gold Logo, App Icon
 
-### Community 17 - "server-user.ts"
-Cohesion: 0.14
-Nodes (20): AnalyticsPage(), dynamic, metadata, dynamic, EODPage(), metadata, dynamic, LaporanPage() (+12 more)
+### Community 17 - "getUserRole"
+Cohesion: 0.18
+Nodes (15): AnalyticsPage(), dynamic, metadata, dynamic, metadata, PelangganPage(), CsPerformancePage(), dynamic (+7 more)
+
+### Community 18 - "eslint.config.mjs"
+Cohesion: 0.50
+Nodes (3): eslintConfig, eslint, eslint-config-next
+
+### Community 19 - "next"
+Cohesion: 0.18
+Nodes (19): nextConfig, next, POST(), DELETE(), PUT(), POST(), POST(), POST() (+11 more)
+
+### Community 21 - "import_historis.py"
+Cohesion: 0.29
+Nodes (5): json, openpyxl, os, sys, urllib_request
 
 ### Community 28 - "UsersClient"
-Cohesion: 0.16
-Nodes (7): dynamic, metadata, UserRow, UsersClient(), handleSave(), openAdd(), resetForm()
+Cohesion: 0.17
+Nodes (8): dynamic, metadata, UsersPage(), UserRow, UsersClient(), handleSave(), openAdd(), resetForm()
+
+### Community 29 - "cs-performance.ts"
+Cohesion: 0.23
+Nodes (11): aggregateCsActivity(), aggregateCsActivityBase(), aggregateCsPerformance(), bucketKey(), CsActivityResult, CsPerformanceOrder, CsPerformanceResult, CsTeamMember (+3 more)
 
 ### Community 30 - "Spec: Order Lifecycle Hardening"
 Cohesion: 0.12
@@ -196,7 +213,7 @@ Nodes (6): Adjustment, Correction, Direction, Minimum Stock, Shared Shell, Stock
 
 ### Community 34 - "Pekerjaan Selesai"
 Cohesion: 0.06
-Nodes (31): Backlog Audit Pre-Deployment, Browser, Accessibility, dan Performance, CI/CD dan Release Safety, Dashboard Analitik, Dashboard Performa CS, Definition of Done Backlog, Dependency Security, Error Handling dan Observability (+23 more)
+Nodes (30): Backlog Audit Pre-Deployment, Browser, Accessibility, dan Performance, CI/CD dan Release Safety, Dashboard Analitik, Dashboard Performa CS, Definition of Done Backlog, Dependency Security, Error Handling dan Observability (+22 more)
 
 ### Community 35 - "Q: Analisa CodeGraph dan Graphify untuk project ini dan propose kesimpulannya"
 Cohesion: 0.40
@@ -206,29 +223,41 @@ Nodes (4): Answer, Outcome, Q: Analisa CodeGraph dan Graphify untuk project ini 
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: Apakah lifecycle order create edit cancel konsisten?, Source Nodes
 
+### Community 37 - "eod/page.tsx"
+Cohesion: 0.23
+Nodes (10): Breakdown, EOD, EODClient(), handleGenerate(), load(), formatDate(), StockSnapshot, dynamic (+2 more)
+
 ### Community 38 - "dependencies"
+Cohesion: 0.18
+Nodes (11): dependencies, chart.js, html2canvas, jspdf, next, react, react-chartjs-2, react-dom (+3 more)
+
+### Community 39 - "JenisEmasClient.tsx"
 Cohesion: 0.12
-Nodes (17): chart.js, dependencies, chart.js, html2canvas, jspdf, react-chartjs-2, react-dom, react-google-reviews (+9 more)
+Nodes (16): CATEGORIES, emptyForm, FormData, FormModal(), getCategoryLabel(), JenisEmasClient(), nameToSlug(), dynamic (+8 more)
 
-### Community 39 - "AdminHargaClient.tsx"
-Cohesion: 0.05
-Nodes (33): AdminHargaClient(), fetchRole(), formatPrice(), getPrice(), getPriceLabel(), isBuyable(), formatRupiahClient(), MODE_TABS (+25 more)
+### Community 40 - "analytics.ts"
+Cohesion: 0.29
+Nodes (10): addDays(), aggregateAnalytics(), AnalyticsMetrics, AnalyticsOrder, bucketKey(), calculateChangePercent(), getPreviousRange(), roundPercent() (+2 more)
 
-### Community 43 - "internalServerError"
-Cohesion: 0.05
-Nodes (96): POST(), dynamic, GET(), dynamic, GET(), dynamic, GET(), POST() (+88 more)
+### Community 41 - "admin/cs-performance/route.ts"
+Cohesion: 0.33
+Nodes (8): addDays(), dynamic, GET(), isValidDate(), loadOrders(), wibToday(), AnalyticsGrain, CsActivityOrder
+
+### Community 43 - "hasCapability"
+Cohesion: 0.12
+Nodes (32): dynamic, InvoicePage(), dynamic, GET(), Context, DELETE(), dynamic, GET() (+24 more)
 
 ### Community 44 - "migration.sql"
-Cohesion: 0.17
-Nodes (17): public.adjust_stock_atomic(), public.app_settings, public.apply_stock_delta(), public.cancel_order_atomic(), public.create_order_atomic(), public.customers, public.eod_reports, public.gold_types (+9 more)
+Cohesion: 0.13
+Nodes (25): idx_price_date, idx_price_type_date, idx_stock_brand, idx_stock_movements_brand, idx_stock_movements_correction_of, idx_stock_movements_created_by, public.adjust_stock_atomic(), public.app_settings (+17 more)
 
 ### Community 45 - "admin-input.ts"
 Cohesion: 0.11
-Nodes (35): AdminUserCreateInput, AdminUserRole, AdminUserUpdateInput, CustomerMutationInput, DailyReportRange, GOLD_TYPE_CATEGORIES, GoldTypeCategory, GoldTypeCreateInput (+27 more)
+Nodes (38): AdminUserCreateInput, AdminUserRole, AdminUserUpdateInput, CustomerMutationInput, DailyReportRange, GOLD_TYPE_CATEGORIES, GoldTypeCategory, GoldTypeCreateInput (+30 more)
 
-### Community 46 - "gold-api.ts"
-Cohesion: 0.12
-Nodes (15): AdminKontenClient(), AdminKontenPage(), dynamic, AppSettingRow, ComputedPrice, ComputePricesParams, CustomerInput, getHeroContent() (+7 more)
+### Community 46 - "analytics/route.ts"
+Cohesion: 0.48
+Nodes (6): addDays(), dynamic, GET(), isValidDate(), loadOrders(), wibToday()
 
 ### Community 47 - "Q: Scraping tool apa untuk fallback XAU XAG dan XPD?"
 Cohesion: 0.40
@@ -263,40 +292,32 @@ Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: Dashboard statistik stock dan sumber pelanggan sebaiknya ditempatkan di mana dan berisi apa, Source Nodes
 
 ### Community 57 - "package.json"
-Cohesion: 0.50
-Nodes (3): name, private, version
-
-### Community 62 - "fetchInternationalGoldPrice"
 Cohesion: 0.15
-Nodes (21): dynamic, GET(), POST(), run(), dynamic, GET(), hasValidCronSecret(), requireCronOrAdmin() (+13 more)
+Nodes (12): name, private, version, react-dom, react-google-reviews, @supabase/supabase-js, tailwindcss, @tailwindcss/postcss (+4 more)
+
+### Community 61 - "admin/page.tsx"
+Cohesion: 0.14
+Nodes (20): State patterns, AdminLoading(), dynamic, metadata, OrdersPage(), AdminDashboard(), loadData(), loadSettings() (+12 more)
+
+### Community 62 - "gold-api.ts"
+Cohesion: 0.07
+Nodes (50): ref_node_crypto, AdminKontenClient(), AdminKontenPage(), dynamic, dynamic, POST(), dynamic, POST() (+42 more)
 
 ### Community 63 - "Gold Type Modal Design"
 Cohesion: 0.40
 Nodes (4): Add and Edit, Delete, Gold Type Modal Design, Shared Language
 
-### Community 65 - "createClient"
-Cohesion: 0.14
+### Community 65 - "normalizeAppRole"
+Cohesion: 0.19
 Nodes (17): AdminLoginPage(), handleSubmit(), AdminLayout(), fetchUser(), getPageMeta(), pageMeta, AdminSidebar(), fetchRole() (+9 more)
 
-### Community 66 - "OperationalAnalytics.tsx"
-Cohesion: 0.05
-Nodes (61): AnalyticsCharts(), countOptions, fullMoney, horizontalMoneyOptions, lineOptions, tooltipBase, addDays(), AnalyticsClient() (+53 more)
+### Community 66 - "react"
+Cohesion: 0.06
+Nodes (69): chart.js, react, react-chartjs-2, AnalyticsCharts(), countOptions, fullMoney, horizontalMoneyOptions, lineOptions (+61 more)
 
 ### Community 67 - "stock-adjustment.ts"
-Cohesion: 0.31
-Nodes (12): brandName(), canManageStock(), goldTypeId(), integerInRange(), parseStockAdjustment(), parseStockCorrection(), parseStockMinimum(), requiredText() (+4 more)
-
-### Community 68 - "hasCapability"
-Cohesion: 0.26
-Nodes (13): dynamic, InvoicePage(), canAccessOrder(), canManageOrder(), CUSTOMER_SENSITIVE_FIELDS, hasCapability(), normalizeAppRole(), PAGE_CAPABILITY_RULES (+5 more)
-
-### Community 69 - "order-lifecycle.ts"
-Cohesion: 0.23
-Nodes (12): boundedOptionalText(), canGenerateEod(), canManageOrders(), finitePositive(), optionalBoundedInteger(), optionalText(), OrderItemInput, OrderType (+4 more)
-
-### Community 73 - "PelangganClient.tsx"
-Cohesion: 0.39
-Nodes (6): Customer, CustomerOrder, buildAddress(), InvoiceOrder, InvoiceSettings, OrderInvoice()
+Cohesion: 0.13
+Nodes (24): boundedOptionalText(), canGenerateEod(), canManageOrders(), finitePositive(), optionalBoundedInteger(), optionalText(), OrderItemInput, OrderType (+16 more)
 
 ### Community 74 - "Q: Apakah dashboard CS dan admin sudah saling sinkron untuk seluruh fitur?"
 Cohesion: 0.40
@@ -310,34 +331,26 @@ Nodes (10): crosshairPlugin, formatCompact(), formatDateLabel(), formatRupiah(),
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: Apalagi untuk selanjutnya?, Source Nodes
 
-### Community 77 - "local-startup-performance.test.ts"
-Cohesion: 0.50
-Nodes (3): packageJson, publicSiteData, rootLayout
-
 ### Community 78 - "SignaturePad"
-Cohesion: 0.38
+Cohesion: 0.36
 Nodes (4): SignaturePad(), getPos(), move(), start()
 
-### Community 80 - "PelangganClient"
-Cohesion: 0.22
-Nodes (4): PelangganClient(), Purchase, summarizeCustomerPurchases(), formatDate()
+### Community 80 - "PelangganClient.tsx"
+Cohesion: 0.11
+Nodes (16): html2canvas, jspdf, Customer, CustomerOrder, PelangganClient(), InvoiceDownloadButton(), downloadPdf(), Props (+8 more)
 
-### Community 84 - "LaporanClient.tsx"
-Cohesion: 0.40
-Nodes (3): DailySummary, LaporanClient(), StockRow
+### Community 84 - "laporan/page.tsx"
+Cohesion: 0.28
+Nodes (6): DailySummary, LaporanClient(), StockRow, dynamic, LaporanPage(), metadata
 
-### Community 87 - "createAnonClient"
-Cohesion: 0.31
-Nodes (5): AdminPengaturanClient(), AdminPengaturanPage(), dynamic, getTodayPrices(), createAnonClient()
-
-### Community 89 - "publish-prices/route.ts"
-Cohesion: 0.26
-Nodes (15): dynamic, POST(), dynamic, POST(), dynamic, POST(), parsePriceInput(), calculatePrices() (+7 more)
+### Community 87 - "pengaturan/page.tsx"
+Cohesion: 0.47
+Nodes (3): AdminPengaturanClient(), AdminPengaturanPage(), dynamic
 
 ## Knowledge Gaps
-- **366 isolated node(s):** `eslintConfig`, `nextConfig`, `name`, `version`, `private` (+361 more)
-  These have ≤1 connection - possible missing edges or undocumented components.
-- **15 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **371 isolated node(s):** `eslintConfig`, `nextConfig`, `name`, `version`, `private` (+366 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 476 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
@@ -347,17 +360,17 @@ Nodes (15): dynamic, POST(), dynamic, POST(), dynamic, POST(), parsePriceInput()
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `createAdminClient()` connect `internalServerError` to `hasCapability`, `analytics.ts`, `gold-api.ts`, `publish-prices/route.ts`, `fetchInternationalGoldPrice`?**
-  _High betweenness centrality (0.062) - this node is a cross-community bridge._
-- **Why does `formatRupiah()` connect `formatRupiah` to `PricePreviewModal.tsx`, `OperationalAnalytics.tsx`, `(public)/page.tsx`, `OrdersClient.tsx`, `PelangganClient.tsx`, `PriceApprovalPanel`, `OrdersClient`, `gold-api.ts`, `PelangganClient`, `LaporanClient.tsx`, `admin/page.tsx`?**
-  _High betweenness centrality (0.056) - this node is a cross-community bridge._
-- **Why does `normalizeAppRole()` connect `hasCapability` to `createClient`, `stock-adjustment.ts`, `order-lifecycle.ts`, `OrdersClient.tsx`, `AdminHargaClient.tsx`, `formatRupiah`, `OrdersClient`, `server-user.ts`, `admin/page.tsx`?**
-  _High betweenness centrality (0.045) - this node is a cross-community bridge._
+- **Why does `next` connect `next` to `createAdminClient`, `(public)/page.tsx`, `eod/route.ts`, `requireCapability`, `analytics/cs-performance/route.ts`, `(public)/harga/page.tsx`, `adjust/route.ts`, `tentang/page.tsx`, `internalServerError`, `getUserRole`, `@supabase/ssr`, `UsersClient`, `regions/route.ts`, `eod/page.tsx`, `admin/cs-performance/route.ts`, `hasCapability`, `analytics/route.ts`, `package.json`, `admin/page.tsx`, `gold-api.ts`, `normalizeAppRole`, `react`, `laporan/page.tsx`?**
+  _High betweenness centrality (0.182) - this node is a cross-community bridge._
+- **Why does `react` connect `react` to `AdminHargaClient.tsx`, `normalizeAppRole`, `(public)/page.tsx`, `eod/page.tsx`, `OrdersClient.tsx`, `JenisEmasClient.tsx`, `(public)/harga/page.tsx`, `PriceApprovalPanel`, `PriceChart.tsx`, `SignaturePad`, `PelangganClient.tsx`, `getUserRole`, `laporan/page.tsx`, `pengaturan/page.tsx`, `package.json`, `UsersClient`, `admin/page.tsx`, `gold-api.ts`?**
+  _High betweenness centrality (0.096) - this node is a cross-community bridge._
+- **Why does `vitest` connect `vitest` to `createAdminClient`, `react`, `stock-adjustment.ts`, `eod/route.ts`, `requireCapability`, `OrdersClient.tsx`, `analytics/cs-performance/route.ts`, `analytics.ts`, `adjust/route.ts`, `hasCapability`, `internalServerError`, `PelangganClient.tsx`, `next`, `package.json`, `cs-performance.ts`, `gold-api.ts`?**
+  _High betweenness centrality (0.058) - this node is a cross-community bridge._
 - **What connects `eslintConfig`, `nextConfig`, `name` to the rest of the system?**
-  _366 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _371 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `(public)/page.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.07315233785822021 - nodes in this community are weakly interconnected._
-- **Should `devDependencies` be split into smaller, more focused modules?**
-  _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
-- **Should `analytics.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.05365686944634313 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07878787878787878 - nodes in this community are weakly interconnected._
+- **Should `eod/route.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.13450292397660818 - nodes in this community are weakly interconnected._
+- **Should `OrdersClient.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.1286549707602339 - nodes in this community are weakly interconnected._

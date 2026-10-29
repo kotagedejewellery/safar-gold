@@ -49,7 +49,7 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 "${VPS_USER}@${VPS_HOST}" "DEPLOY_SHA=${DEPLOY_SHA} bash -s" <<'EOF'
           set -Eeuo pipefail
 
-          cd /opt/apps/safar-gold/safar-gold
+          cd /opt/apps/sistem-safar-gold
           git fetch --depth=1 origin "$DEPLOY_SHA"
           git checkout --detach "$DEPLOY_SHA"
 
