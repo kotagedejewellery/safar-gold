@@ -1,0 +1,72 @@
+name: Deploy Safar Gold Production
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: safar-gold-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+
+  deploy:
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_SSH_KNOWN_HOSTS: ${{ secrets.VPS_SSH_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$VPS_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+
+      - name: Deploy tested commit
+        env:
+          DEPLOY_SHA: ${{ github.sha }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          ssh -i ~/.ssh/id_ed25519 "${VPS_USER}@${VPS_HOST}" "DEPLOY_SHA=${DEPLOY_SHA} bash -s" <<'EOF'
+          set -Eeuo pipefail
+
+          cd /opt/apps/safar-gold/safar-gold
+          git fetch --depth=1 origin "$DEPLOY_SHA"
+          git checkout --detach "$DEPLOY_SHA"
+
+          docker compose --env-file .env.production -f compose.production.yml config -q
+          docker compose --env-file .env.production -f compose.production.yml up -d --build --force-recreate
+
+          for attempt in {1..24}; do
+            container_id=$(docker compose --env-file .env.production -f compose.production.yml ps -q app)
+            health=$(docker inspect --format '{{.State.Health.Status}}' "$container_id" 2>/dev/null || true)
+            if [ "$health" = healthy ]; then
+              curl --fail --silent --show-error --head --max-time 20 https://safargold.com
+              exit 0
+            fi
+            sleep 5
+          done
+
+          docker compose --env-file .env.production -f compose.production.yml ps
+          docker compose --env-file .env.production -f compose.production.yml logs --tail=100
+          exit 1
+          EOF

@@ -1,0 +1,39 @@
+name: safar-gold
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL}
+        NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY}
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
+    env_file:
+      - .env.production
+    restart: unless-stopped
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then((response) => process.exit(response.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.safar-gold-http.rule=Host(`safargold.com`)"
+      - "traefik.http.routers.safar-gold-http.entrypoints=web"
+      - "traefik.http.routers.safar-gold-http.middlewares=safar-gold-https"
+      - "traefik.http.middlewares.safar-gold-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.safar-gold.rule=Host(`safargold.com`)"
+      - "traefik.http.routers.safar-gold.entrypoints=websecure"
+      - "traefik.http.routers.safar-gold.tls=true"
+      - "traefik.http.routers.safar-gold.tls.certresolver=letsencrypt"
+      - "traefik.http.services.safar-gold.loadbalancer.server.port=3000"
+
+networks:
+  proxy:
+    external: true
